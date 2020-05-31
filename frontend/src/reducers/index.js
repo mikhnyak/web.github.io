@@ -5,6 +5,7 @@ import auth from "./auth";
 import messages from "./messages";
 import cafes from "./cafes";
 import ingredients from "./ingredients";
+import orders from "./orders";
 
 export default combineReducers({
   cocktails,
@@ -13,4 +14,5 @@ export default combineReducers({
   messages,
   cafes,
   ingredients,
+  orders,
 });

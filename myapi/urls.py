@@ -9,7 +9,7 @@ router.register(r'menu', views.MenuViewSet)
 router.register(r'cafe_ingredient', views.CafeIngredientViewSet)
 router.register(r'cocktail_ingredient', views.CocktailIngredientViewSet)
 router.register(r'ingredients', views.IngredientViewSet)
-router.register(r'orders', views.OrderViewSet)
+router.register(r'orders', views.OrderViewSet, basename='orders')
 
 
 # Wire up our API using automatic URL routing.

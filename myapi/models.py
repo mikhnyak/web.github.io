@@ -64,10 +64,11 @@ class Menu(models.Model):
 
 class Order(models.Model):
     price = models.FloatField(max_length=60)
-    date = models.DateField(max_length=60, auto_now_add=True)
+    date = models.DateTimeField(max_length=60, auto_now_add=True)
     cocktails = models.ManyToManyField(Cocktail)
     # models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, related_name="orders", on_delete=models.CASCADE, null=True)
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
 
     def __str__(self):
