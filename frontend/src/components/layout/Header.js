@@ -51,7 +51,7 @@ export class Header extends Component {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
           <a className="navbar-brand" href="#">
-            Drinmix
+            DR
           </a>
           <button
             className="navbar-toggler"
@@ -90,7 +90,7 @@ export class Header extends Component {
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
-                    <Link to="/cafes/${cafe.id}" className="nav-link">
+                    <Link to={cafe.id} className="nav-link">
                       {cafe.name}
                     </Link>
                   </div>

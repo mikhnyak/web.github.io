@@ -6,6 +6,7 @@ from .models import Order
 from .models import Cafe
 from .models import CocktailIngredient
 from .models import Menu
+from .models import OrderCocktail
 
 # Register your models here.
 
@@ -17,3 +18,4 @@ admin.site.register(Ingredient)
 admin.site.register(Order)
 admin.site.register(Cafe)
 admin.site.register(Menu)
+admin.site.register(OrderCocktail)

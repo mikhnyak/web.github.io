@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
     case ADD_COCKTAIL:
       return {
         ...state,
-        leads: [...state.leads, action.payload],
+        cocktails: [...state.cocktails, action.payload],
       };
     default:
       return state;

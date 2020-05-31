@@ -7,6 +7,7 @@ from .models import Order
 from .models import Cafe
 from .models import CocktailIngredient
 from .models import Menu
+from .models import OrderCocktail
 
 
 class CafeSerializer(serializers.HyperlinkedModelSerializer):
@@ -48,4 +49,10 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
 class CocktailIngredientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CocktailIngredient
+        fields = '__all__'
+
+
+class OrderCocktailSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = OrderCocktail
         fields = '__all__'

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from model_utils import Choices
 
 
 class Ingredient(models.Model):
@@ -48,6 +49,7 @@ class Cafe(models.Model):
     email = models.EmailField()
     phone_number = models.IntegerField()
     ingredient = models.ManyToManyField(CafeIngredient)
+    cocktails = models.ManyToManyField(Cocktail)
 
     def __str__(self):
         return self.name
@@ -62,14 +64,29 @@ class Menu(models.Model):
         return self.name
 
 
-class Order(models.Model):
-    price = models.FloatField(max_length=60)
-    date = models.DateTimeField(max_length=60, auto_now_add=True)
-    cocktails = models.ManyToManyField(Cocktail)
-    # models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user = models.ForeignKey(
-        User, related_name="orders", on_delete=models.CASCADE, null=True)
-    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
+class OrderCocktail(models.Model):
+    cocktail = models.ManyToManyField(Cocktail)
+    quantity = models.CharField(max_length=40)
 
     def __str__(self):
-        return "%s %s" % (self.price, self.date)
+        return "%s %s" % (self.cocktail, self.quantity)
+
+
+class Order(models.Model):
+    STATUS = Choices(
+        ('pending', 'Purchase order'),
+        ('closed', 'Closed'),
+        ('waiting', 'Will be done in a few minutes'),
+    )
+
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
+    price = models.FloatField(max_length=60)
+    status = models.CharField(
+        max_length=32,
+        choices=STATUS,
+        default=STATUS.closed,
+    )
+    cocktails = models.ManyToManyField(OrderCocktail)
+    user = models.ForeignKey(
+        User, related_name="orders", on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(auto_now_add=True)

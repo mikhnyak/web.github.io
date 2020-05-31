@@ -34,9 +34,9 @@ export const deleteOrder = (id) => (dispatch, getState) => {
 };
 
 // ADD ORDER
-export const addOrder = (lead) => (dispatch, getState) => {
+export const addOrder = (order) => (dispatch, getState) => {
   axios
-    .post("/orders/", lead, tokenConfig(getState))
+    .post("/orders/", order, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ addOrder: "Order Added" }));
       dispatch({

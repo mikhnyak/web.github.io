@@ -7,6 +7,7 @@ from .serializers import OrderSerializer
 from .serializers import CafeSerializer
 from .serializers import CocktailIngredientSerializer
 from .serializers import MenuSerializer
+from .serializers import OrderCocktailSerializer
 from .models import Cocktail
 from .models import CafeIngredient
 from .models import Ingredient
@@ -14,6 +15,7 @@ from .models import Order
 from .models import Cafe
 from .models import Menu
 from .models import CocktailIngredient
+from .models import OrderCocktail
 from rest_framework import viewsets, permissions
 
 # Create your views here.
@@ -54,6 +56,14 @@ class CafeIngredientViewSet(viewsets.ModelViewSet):
     serializer_class = CafeIngredientSerializer
 
 
+class OrderCocktailViewSet(viewsets.ModelViewSet):
+    queryset = OrderCocktail.objects.all().order_by('quantity')
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = OrderCocktailSerializer
+
+
 class CocktailIngredientViewSet(viewsets.ModelViewSet):
     queryset = CocktailIngredient.objects.all().order_by('amount_of_ingredient')
     permission_classes = [
@@ -72,12 +82,12 @@ class IngredientViewSet(viewsets.ModelViewSet):
 
 class OrderViewSet(viewsets.ModelViewSet):
     permission_classes = [
-        permissions.IsAuthenticated,
+        permissions.IsAuthenticated
     ]
     serializer_class = OrderSerializer
 
-    def get_queryset(self):
-        return self.request.user.orders.all()
-
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        return self.request.user.orders.all()
