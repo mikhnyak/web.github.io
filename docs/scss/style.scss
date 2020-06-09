@@ -1,0 +1,94 @@
+/* Required for full background image */
+@import url(//fonts.googleapis.com/css?family=Lato:400,900);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import '_custom-variables.scss';
+
+
+@mixin prefix($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+
+    
+html,
+body,
+header,
+#intro-section {
+    height: 100%;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    #intro-section {
+        height: 100vh;
+    }
+}
+
+.top-nav-collapse, .page-footer, .dark {
+    background-color: $navbar-color !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background:  transparent!important;
+}
+
+@media (max-width: 991px) {
+    .navbar:not(.top-nav-collapse) {
+        background: $navbar-color !important;
+    }
+}
+
+.rgba-gradient {
+    background: $right-gradient;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, $left-gradient, $right-gradient);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, $left-gradient, $right-gradient);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#contact {
+    background-color: $gray;
+}
+
+.active-cyan-4 {
+    color: $active-cyan-4;
+  }
+
+.white {
+    border: none;
+    color: $right-gradient;
+    background-color: $background-color;
+}
+
+.white-color {
+    color: $background-color;
+}
+
+.container-border {
+    $padding: 10rem;
+    padding {
+        left: $padding;
+        right: $padding;
+    }
+}
+
+.btn-oval{
+    border-radius: 70%;
+    color: $background-color;
+    background-color: $button-plus-color;
+}
+
+pre {
+    $size: 3;
+    @include prefix(tab-size, $size, moz o);
+}
+.box {
+    height: 25em;
+    width: 20em;
+    left: 75em;
+}
+
