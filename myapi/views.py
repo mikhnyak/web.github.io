@@ -17,6 +17,7 @@ from .models import Menu
 from .models import CocktailIngredient
 from .models import OrderCocktail
 from rest_framework import viewsets, permissions
+from rest_framework.parsers import MultiPartParser, FormParser
 
 # Create your views here.
 

@@ -2,6 +2,17 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCocktails } from "../../actions/cocktails";
+
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardActionArea,
+  CardActions,
+  CardMedia,
+  Typography,
+} from "@material-ui/core/";
+
 export class Cocktails extends Component {
   static propTypes = {
     cocktails: PropTypes.array.isRequired,
@@ -14,27 +25,50 @@ export class Cocktails extends Component {
   render() {
     return (
       <Fragment>
-        <h1>Cocktails</h1>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody>
+        <h1>Kumpel</h1>
+        <div>
+          <Grid
+            container
+            spacing={2}
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+          >
             {this.props.cocktails.map((cocktail) => (
-              <tr key={cocktail.name}>
-                <td>{cocktail.id}</td>
-                <td>{cocktail.name}</td>
-                <td>{cocktail.price}</td>
-                <td>{cocktail.time}</td>
-              </tr>
+              <Grid item xs={12} sm={6} md={3} key={cocktail.name}>
+                <Card>
+                  <CardActionArea>
+                    <img
+                      src={cocktail.image}
+                      className="card-img-top"
+                      alt={cocktail.name}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {cocktail.name}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {cocktail.price}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <button className="nav-link btn btn-info btn-sm text-light">
+                      Add
+                    </button>
+                    <button className="nav-link btn btn-primary btn-sm text-light">
+                      Order
+                    </button>
+                  </CardActions>
+                </Card>
+              </Grid>
             ))}
-          </tbody>
-        </table>
+          </Grid>
+        </div>
       </Fragment>
     );
   }

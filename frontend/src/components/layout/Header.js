@@ -72,30 +72,7 @@ export class Header extends Component {
                   Home <span className="sr-only">(current)</span>
                 </a>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Cafes
-                </a>
-                {this.props.cafes.map((cafe) => (
-                  <div
-                    key={cafe.name}
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <Link to={cafe.id} className="nav-link">
-                      {cafe.name}
-                    </Link>
-                  </div>
-                ))}
-              </li>
+
               <li className="nav-item">
                 <Link to="/mymenu" className="nav-link">
                   My menu

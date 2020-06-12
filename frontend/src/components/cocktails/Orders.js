@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getOrders, deleteOrder } from "../../actions/orders";
+import { orders } from "./myorders";
 
 export class Orders extends Component {
   static propTypes = {
@@ -10,9 +11,7 @@ export class Orders extends Component {
     deleteOrder: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    this.props.getOrders();
-  }
+  // componentDidMount() { this.props.getOrders();}
 
   render() {
     return (
@@ -25,25 +24,15 @@ export class Orders extends Component {
               <th>Price</th>
               <th>Date</th>
               <th>Cocktails</th>
-              <th />
             </tr>
           </thead>
           <tbody>
-            {this.props.orders.map((order) => (
+            {orders.map((order) => (
               <tr key={order.id}>
                 <td>{order.id}</td>
                 <td>{order.price}</td>
                 <td>{order.date}</td>
                 <td>{order.cocktails}</td>
-                <td>
-                  <button
-                    onClick={this.props.deleteOrder.bind(this, order.id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    Delete
-                  </button>
-                </td>
               </tr>
             ))}
           </tbody>

@@ -25,10 +25,10 @@ class Cocktail(models.Model):
     name = models.CharField(max_length=60)
     ingredients = models.ManyToManyField(CocktailIngredient)
     price = models.FloatField(max_length=60)
-    image = models.ImageField()
+    image = models.ImageField(null=True)
     volume = models.IntegerField()
     alcohol = models.BooleanField()
-    custom = models.BooleanField()
+    custom = models.BooleanField(default=True)
     time = models.IntegerField()
 
     def __str__(self):

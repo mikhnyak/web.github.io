@@ -57,9 +57,6 @@ export class MyMenu extends Component {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <button className="nav-link btn btn-info btn-sm text-light">
-                      Add
-                    </button>
                     <button className="nav-link btn btn-primary btn-sm text-light">
                       Order
                     </button>

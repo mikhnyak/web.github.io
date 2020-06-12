@@ -46,10 +46,10 @@ class App extends Component {
               <Alerts />
               <div className="container">
                 <Switch>
-                  <PrivateRoute exact path="/" component={Cocktails} />
+                  <Route exact path="/" component={Cocktails} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
-                  <Route exact path="/cafe" component={Cafe} />
+                  <Route exact path="/cafes" component={Cafe} />
                   <PrivateRoute exact path="/mymenu" component={MyMenu} />
                   <PrivateRoute
                     exact

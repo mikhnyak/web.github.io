@@ -20,13 +20,15 @@ export class Form extends Component {
     this.props.getIngredients();
   }
 
-  fileChangedHandler = (event) => {
-    this.setState({ image: event.target.files[0] });
-  };
-
   static propTypes = {
     addCocktail: PropTypes.func.isRequired,
     getIngredients: PropTypes.func.isRequired,
+  };
+
+  handleImageChange = (e) => {
+    this.setState({
+      image: e.target.files[0],
+    });
   };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -107,10 +109,31 @@ export class Form extends Component {
                 value={price}
               />
             </div>
+            <div>
+              <label>Ingredients</label>
+              <select
+                defaultValue={this.state.selectValue}
+                onChange={this.onChange}
+              >
+                <option value={ingredients}>Orange</option>
+                <option value={ingredients}>Radish</option>
+                <option value={ingredients}>Cherry</option>
+              </select>
+            </div>
+            <div>
+              <label>Image</label>
+              <input
+                type="file"
+                id="image"
+                accept="image/png, image/jpeg"
+                onChange={this.handleImageChange}
+                required
+              />
+            </div>
 
             <div className="form-group">
               <button type="submit" className="btn btn-primary">
-                Submit
+                Create
               </button>
             </div>
           </form>
